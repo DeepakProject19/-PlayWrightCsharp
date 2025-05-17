@@ -24,6 +24,6 @@ public class LoginTests : IClassFixture<PlaywrightFixture>
         await page.ClickAsync("#login-button");
         await page.WaitForURLAsync("https://www.saucedemo.com/inventory.html");
         var pageTitle = await page.TitleAsync();
-        Assert.Equal("Swag Labs", pageTitle);
+        Assert.Equal("Swag ", pageTitle);
     }
 }
