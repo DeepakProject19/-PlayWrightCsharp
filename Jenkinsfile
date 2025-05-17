@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    triggers {
-        cron('H/10 * * * *') // every 10 minutes
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -14,25 +10,25 @@ pipeline {
 
         stage('Restore') {
             steps {
-                sh 'dotnet restore'
+                bat 'dotnet restore'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'dotnet build --configuration Release'
+                bat 'dotnet build --no-restore'
             }
         }
 
         stage('Install Browsers') {
             steps {
-                sh 'pwsh bin/Release/net8.0/playwright.ps1 install --with-deps'
+                bat 'npx playwright install'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'dotnet test --no-build --verbosity normal'
+                bat 'dotnet test --no-build'
             }
         }
     }
