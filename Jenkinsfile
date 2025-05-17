@@ -1,14 +1,14 @@
 pipeline {
     agent any
 
-    tools {
-        dotnet 'dotnet-8' // Configure this in Jenkins global tools
+    triggers {
+        cron('H/10 * * * *') // every 10 minutes
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/YourUserName/YourRepo.git'
+                git 'https://github.com/DeepakProject19/-PlayWrightCsharp.git'
             }
         }
 
