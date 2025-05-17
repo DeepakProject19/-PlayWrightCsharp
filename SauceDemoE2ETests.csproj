@@ -2,23 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-
-    <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="Microsoft.Playwright" Version="1.52.0" />
-    <PackageReference Include="xunit" Version="2.5.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+    <PackageReference Include="Microsoft.Playwright" Version="1.44.0" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.0" />
+    <PackageReference Include="SpecFlow" Version="4.0.31-beta" />
+    <PackageReference Include="SpecFlow.NUnit" Version="4.0.31-beta" />
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Xunit" />
+    <None Update="*.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>$(MSBuildThisFileDirectory)%(Filename).feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

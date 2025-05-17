@@ -1,18 +1,21 @@
 using Microsoft.Playwright;
 using System.Threading.Tasks;
-using Xunit;
+using NUnit.Framework;
 
-public class PlaywrightFixture : IAsyncLifetime
+[SetUpFixture]
+public class PlaywrightFixture
 {
-    public IPlaywright? Playwright { get; private set; }
-    public IBrowser? Browser { get; private set; }
+    public static IPlaywright? Playwright { get; private set; }
+    public static IBrowser? Browser { get; private set; }
 
+    [OneTimeSetUp]
     public async Task InitializeAsync()
     {
         Playwright = await Microsoft.Playwright.Playwright.CreateAsync();
         Browser = await Playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
     }
 
+    [OneTimeTearDown]
     public async Task DisposeAsync()
     {
         if (Browser != null)
@@ -21,7 +24,7 @@ public class PlaywrightFixture : IAsyncLifetime
         }
         if (Playwright != null)
         {
-            Playwright.Dispose(); // Use Dispose instead of DisposeAsync
+            Playwright.Dispose();
         }
     }
 }
